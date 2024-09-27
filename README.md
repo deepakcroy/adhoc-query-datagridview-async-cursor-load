@@ -16,7 +16,9 @@ Data Scrolling:
 
 When you scroll down to see more rows, SQL Developer fetches the next batch and appends it to the result grid. This process continues until all rows in the result set have been fetched.
 The fetch size is adjustable in SQL Developer, allowing users to balance between initial load time and memory usage.
+
 Key Mechanisms:
+
 Cursor Fetching: SQL Developer opens a cursor for the query, which is essentially a pointer to the result set. The cursor allows SQL Developer to retrieve rows incrementally without having to load the entire result set at once.
 
 Prefetching: In Oracle, the row prefetching mechanism allows the client to fetch a batch of rows from the server in a single round trip, reducing the number of network round trips required for large result sets.
