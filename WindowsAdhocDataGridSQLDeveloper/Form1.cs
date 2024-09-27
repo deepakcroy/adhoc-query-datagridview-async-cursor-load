@@ -15,11 +15,11 @@ namespace WindowsAdhocDataGridSQLDeveloper
     public partial class Form1 : Form
     {
         //public static string connectionString = "Server=localhost;Port=3306;Database=tcs_dpdc_mw_prod;Uid=deepak;Pwd=821216;charset=utf8;";
-        static string host = "192.168.200.23";
+        static string host = "localhost";
         static string port = "1521";
-        static string sid = "prepaydb.dpdc.org.bd";
-        static string user = "prepaid1";
-        static string pwd = "PrePaid132";
+        static string sid = "orcl";
+        static string user = "user";
+        static string pwd = "pwd";
         public static string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST= " + host + " )(PORT= " + port + " )))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME= " + sid + " )));User Id= " + user + " ;Password=" + pwd + ";";
 
         private List<object[]> data = new List<object[]>();
