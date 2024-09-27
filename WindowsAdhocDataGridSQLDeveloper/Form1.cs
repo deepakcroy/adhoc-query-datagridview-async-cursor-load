@@ -14,7 +14,6 @@ namespace WindowsAdhocDataGridSQLDeveloper
 {
     public partial class Form1 : Form
     {
-        //public static string connectionString = "Server=localhost;Port=3306;Database=tcs_dpdc_mw_prod;Uid=deepak;Pwd=821216;charset=utf8;";
         static string host = "localhost";
         static string port = "1521";
         static string sid = "orcl";
