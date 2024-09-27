@@ -14,6 +14,7 @@ namespace WindowsAdhocDataGridSQLDeveloper
 {
     public partial class Form1 : Form
     {
+        
         static string host = "localhost";
         static string port = "1521";
         static string sid = "orcl";
@@ -30,7 +31,7 @@ namespace WindowsAdhocDataGridSQLDeveloper
         private OracleDataReader reader; // Class-level variable for reader
 
         private bool isLoading = false; // Flag to prevent multiple loads
-        private System.Timers.Timer scrollTimer; // Timer for debouncing scroll
+        
 
         private object _locker = new object();
 
@@ -55,14 +56,6 @@ namespace WindowsAdhocDataGridSQLDeveloper
             // this.dataGridView1.SetRedraw(false);
             this.dataGridView1.SetDoubleBuffering(true);
 
-
-
-            // Initialize the scroll timer
-            scrollTimer = new System.Timers.Timer(100); // Set debounce time (in milliseconds)
-            scrollTimer.Elapsed += OnScrollTimerElapsed;
-            scrollTimer.AutoReset = false; // Run only once
-
-            // LoadDataAsync(); // Initial load
         }
 
         private async void LoadDataAsync()
@@ -163,31 +156,7 @@ namespace WindowsAdhocDataGridSQLDeveloper
             }
         }
 
-        private async void OnScrollTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            // Marshal to the UI thread to check if close to the bottom of the currently loaded rows
-            this.Invoke((MethodInvoker)delegate
-            {
-                // Check if we're near the bottom
-                if (dataGridView1.FirstDisplayedScrollingRowIndex + dataGridView1.DisplayedRowCount(false) >= loadedRows - 5)
-                {
-                    isLoading = true; // Set loading flag
-                }
-            });
-
-            // Proceed with loading the next batch of data asynchronously outside of the Invoke
-            if (isLoading)
-            {
-                int nextBatchSize = Math.Min(batchSize, 50);
-                await LoadMoreDataAsync(nextBatchSize);
-
-                // Update isLoading flag back on the UI thread after async operation completes
-                this.Invoke((MethodInvoker)delegate
-                {
-                    isLoading = false; // Reset loading flag
-                });
-            }
-        }
+        
 
         private void ResetDataGridView()
         {
